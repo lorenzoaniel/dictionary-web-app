@@ -4,10 +4,9 @@ const AudioButton: React.FC = () => {
 	return (
 		<button
 			className="audio-button
-      h-fit w-fit
 			group
-			bg-primary-700
-			dark:bg-primary-100
+			bg-transparent
+      h-fit w-fit
       "
 		>
 			<svg

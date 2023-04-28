@@ -2,33 +2,47 @@
 
 import React, { useState } from "react";
 import * as Switch from "@radix-ui/react-switch";
+import { clsx } from "clsx";
 
-const DarkmodeToggleButton: React.FC = () => {
+interface Props {
+	isDarkmode: boolean;
+	handleClick: () => void; //TODO: attach state toggle hook
+}
+
+const DarkmodeToggleButton: React.FC<Props> = ({ isDarkmode, handleClick }) => {
 	return (
 		<div
-			className="darkmode-toggle-wrapper
-			group
-			flex
-			w-fit
-			h-fit
-			gap-x-[1.2rem]
-      "
+			className={clsx(
+				"darkmode-toggle-wrapper",
+				"group flex w-fit h-fit gap-x-[1.2rem]",
+				"md:gap-x-[2rem]"
+			)}
 		>
 			<Switch.Root
-				className="darkmode-toggle-root
-        h-[2rem] w-[4rem]
-				flex
-				rounded-[1rem]
-				p-[0.3rem]
-				bg-primary-400
-        "
+				onClick={handleClick}
+				className={clsx(
+					"darkmode-toggle-root",
+					"h-[2rem] w-[4rem] flex flex-col rounded-[1rem] p-[0.3rem]",
+					{
+						"group-hover:bg-primary-400": isDarkmode,
+						"group-hover:bg-secondary-100": !isDarkmode,
+					},
+					{
+						"bg-secondary-100": isDarkmode,
+						"bg-primary-400": !isDarkmode,
+					}
+				)}
 			>
 				<Switch.Thumb
-					className="darkmode-toggle-thumb
-          h-[1.4rem] w-[1.4rem]
-					rounded-full
-					bg-primary-100
-          "
+					className={clsx(
+						"darkmode-toggle-thumb",
+						"h-[1.4rem] w-[1.4rem] rounded-full bg-primary-100",
+						"transition ease-in-out",
+						{
+							"translate-x-[2rem]": isDarkmode,
+							"translate-x-0": !isDarkmode,
+						}
+					)}
 				/>
 			</Switch.Root>
 			<svg
@@ -39,7 +53,17 @@ const DarkmodeToggleButton: React.FC = () => {
 				viewBox="0 0 22 22"
 			>
 				<path
-					className="darkmode-toggle-icon-path"
+					className={clsx(
+						"darkmode-toggle-icon-path",
+						{
+							"group-hover:stroke-primary-400": isDarkmode,
+							"group-hover:stroke-secondary-100": !isDarkmode,
+						},
+						{
+							"stroke-secondary-100": isDarkmode,
+							"stroke-primary-400": !isDarkmode,
+						}
+					)}
 					fill="none"
 					stroke="#838383"
 					stroke-linecap="round"

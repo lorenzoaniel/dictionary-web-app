@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: "Inconsolata";
+	font-family: "inconsolata";
 	src: url("/assets/fonts/inconsolata/Inconsolata-VariableFont_wdth,wght.ttf");
 }
 
 @font-face {
-	font-family: "Inter";
+	font-family: "inter";
 	src: url("/assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf");
 }
 
 @font-face {
-	font-family: "Lora";
+	font-family: "lora";
 	src: url("/assets/fonts/lora/Lora-VariableFont_wght.ttf");
 }
 
 @font-face {
-	font-family: "LoraItalic";
+	font-family: "loraItalic";
 	src: url("/assets/fonts/lora/Lora-Italic-VariableFont_wght.ttf");
 }
 

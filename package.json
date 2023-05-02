@@ -1,43 +1,31 @@
 {
-  "name": "dictionary-web-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@radix-ui/react-switch": "^1.0.2",
-    "@types/node": "18.16.1",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.1",
-    "autoprefixer": "10.4.14",
-    "clsx": "^1.2.1",
-    "framer-motion": "^10.12.4",
-    "next": "13.3.1",
-    "postcss": "^8.4.23",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4",
-    "zustand": "^4.3.7"
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "7.0.7",
-    "@storybook/addon-interactions": "7.0.7",
-    "@storybook/addon-links": "7.0.7",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/blocks": "7.0.7",
-    "@storybook/nextjs": "^7.0.7",
-    "@storybook/react": "7.0.7",
-    "@storybook/testing-library": "0.0.14-next.2",
-    "postcss-loader": "^7.2.4",
-    "storybook": "7.0.7",
-    "storybook-addon-next": "^1.8.0",
-    "storybook-tailwind-dark-mode": "^1.0.22"
-  }
+	"name": "dictionary-web-app",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@radix-ui/react-dropdown-menu": "^2.0.4",
+		"@radix-ui/react-switch": "^1.0.2",
+		"@types/node": "18.16.1",
+		"@types/react": "18.2.0",
+		"@types/react-dom": "18.2.1",
+		"autoprefixer": "10.4.14",
+		"clsx": "^1.2.1",
+		"framer-motion": "^10.12.4",
+		"next": "13.3.1",
+		"postcss": "^8.4.23",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"tailwindcss": "3.3.2",
+		"typescript": "5.0.4",
+		"zustand": "^4.3.7"
+	},
+	"devDependencies": {
+		"postcss-loader": "^7.2.4"
+	}
 }

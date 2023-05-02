@@ -2,14 +2,13 @@
 module.exports = {
 	darkMode: "class",
 	content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx}",
+		"./src/components/**/*.{js,ts,jsx,tsx}",
+		"./src/app/**/*.{js,ts,jsx,tsx}",
 		"./stories/**/*.{ts,tsx}",
 	],
 	theme: {
 		extend: {
-			backgroundColor: {},
 			colors: {
 				primary: {
 					100: `#FFFFFF`,
@@ -28,14 +27,22 @@ module.exports = {
 					100: `#FF5252`,
 				},
 			},
+			fontFamily: {
+				mono: ["inconsolata", "mono"],
+				serif: ["lora", "serif"],
+				serifitalic: ["loraItalic", "serif"],
+				sansserif: ["inter", "sans"],
+			},
 			fontSize: {
-				heading: {
-					l: {
-						sans: ["6.4rem", { lineHeight: "7.7rem", fontWeight: "700" }],
-						serif: ["6.4rem", { lineHeight: "8.2rem", fontWeight: "700" }],
-						mono: ["6.4rem", { lineHeight: "6.7rem", fontWeight: "700" }],
-					},
-				},
+				"heading-l-sans": ["6.4rem", { lineHeight: "7.7rem" }],
+				"heading-l-serif": ["6.4rem", { lineHeight: "8.2rem" }],
+				"heading-l-mono": ["6.4rem", { lineHeight: "6.7rem" }],
+				"body-m-mobile-sans": ["1.4rem", { lineHeight: "2.4rem" }],
+				"body-m-mobile-serif": ["1.4rem", { lineHeight: "2.4rem" }],
+				"body-m-mobile-mono": ["1.4rem", { lineHeight: "2.4rem" }],
+				"body-m-large-sans": ["1.8rem", { lineHeight: "2.4rem" }],
+				"body-m-large-serif": ["1.8rem", { lineHeight: "2.4rem" }],
+				"body-m-large-mono": ["1.8rem", { lineHeight: "2.4rem" }],
 			},
 			screens: {
 				md: "768px",

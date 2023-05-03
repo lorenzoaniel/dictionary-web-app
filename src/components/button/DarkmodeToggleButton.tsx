@@ -7,6 +7,7 @@ import { useDarkModeToggle } from "@/zustand/useDarkModeToggle/useDarkModeToggle
 
 const DarkmodeToggleButton: React.FC = () => {
 	const darkmode = useDarkModeToggle();
+
 	return (
 		<div
 			className={clsx(
@@ -20,15 +21,17 @@ const DarkmodeToggleButton: React.FC = () => {
 				className={clsx(
 					"darkmode-toggle-root",
 					"h-[2rem] w-[4rem] flex flex-col rounded-[1rem] p-[0.3rem] bg-primary-400",
+					"dark:bg-secondary-100",
 					"group-hover:bg-secondary-100",
-					"dark:bg-secondary-100 dark:group-hover:bg-primary-400"
+					"dark:group-hover:bg-primary-400"
 				)}
 			>
 				<Switch.Thumb
 					className={clsx(
 						"darkmode-toggle-thumb",
 						"h-[1.4rem] w-[1.4rem] rounded-full bg-primary-100",
-						"transition ease-in-out translate-x-0 dark:translate-x-[2rem]"
+						"transition ease-in-out translate-x-0",
+						"dark:translate-x-[2rem]"
 					)}
 				/>
 			</Switch.Root>
@@ -42,8 +45,10 @@ const DarkmodeToggleButton: React.FC = () => {
 				<path
 					className={clsx(
 						"darkmode-toggle-icon-path",
-						"stroke-primary-400 group-hover:stroke-secondary-100",
-						"dark:stroke-secondary-100 dark:group-hover:stroke-primary-400"
+						"stroke-primary-400 ",
+						"dark:stroke-secondary-100",
+						"group-hover:stroke-secondary-100",
+						"dark:group-hover:stroke-primary-400"
 					)}
 					fill="none"
 					strokeLinecap="round"

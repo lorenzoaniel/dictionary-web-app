@@ -25,15 +25,7 @@
 * {
 	box-sizing: border-box;
 	/* transition: font-size 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out; */
-}
-
-html {
-	height: 100vh;
-	overflow-y: scroll;
-	font-size: 62.5%;
-}
-
-body {
-	height: 100%;
-	background: green;
+	/* Hide scrollbar for Firefox */
+	scrollbar-width: thin;
+	-ms-overflow-style: none; /* IE and Edge */
 }

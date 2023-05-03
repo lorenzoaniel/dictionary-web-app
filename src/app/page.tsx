@@ -8,9 +8,7 @@ import React from "react";
 
 const Home: React.FC = () => {
 	return (
-		<main
-			className={clsx("App", "p-[2.4rem] h-full w-[inherit] bg-primary-100", "dark:bg-primary-800")}
-		>
+		<main className={clsx("App", "p-[2.4rem] h-full bg-primary-100", "dark:bg-primary-800")}>
 			<Section classname={"header"}>
 				<Logo />
 				<div

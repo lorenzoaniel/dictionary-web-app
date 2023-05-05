@@ -29,3 +29,17 @@
 	scrollbar-width: thin;
 	-ms-overflow-style: none; /* IE and Edge */
 }
+
+/* Set the width of the scrollbar */
+::-webkit-scrollbar {
+	width: 0.1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+} */

@@ -1,6 +1,6 @@
 import AudioButton from "@/components/button/AudioButton";
 import DarkmodeToggleButton from "@/components/button/DarkmodeToggleButton";
-import PhoneticDisplay from "@/components/display/phoneticDisplay";
+import PhoneticDisplay from "@/components/display/PhoneticDisplay";
 import Divider from "@/components/divider";
 import Dropdown from "@/components/dropdown";
 import Logo from "@/components/logo";

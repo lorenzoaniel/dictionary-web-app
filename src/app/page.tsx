@@ -10,11 +10,13 @@ import Section from "@/components/section";
 import MainSeparator from "@/components/separator/MainSeparator";
 import { clsx } from "clsx";
 import React from "react";
+import { testdata } from "@/testdata/testdata";
 
 const Home: React.FC = () => {
 	const test = {
 		word: "keyboard",
 		phonetic: `/ˈkiːbɔːd/`,
+		data: testdata,
 	};
 
 	return (
@@ -47,8 +49,14 @@ const Home: React.FC = () => {
 			<Section classname={"mainseparator"}>
 				<MainSeparator title={"noun"} />
 			</Section>
-			<Section classname={"noundefinition"}>
-				<MeaningDisplay />
+			<Section classname={"definitions"}>
+				<MeaningDisplay definitions={test.data[0].meanings[0].definitions} classname={"noun"} />
+			</Section>
+			<Section classname={"mainseparator"}>
+				<MainSeparator title={"verb"} />
+			</Section>
+			<Section classname={"definitions"}>
+				<MeaningDisplay definitions={test.data[0].meanings[1].definitions} classname={"noun"} />
 			</Section>
 		</main>
 	);

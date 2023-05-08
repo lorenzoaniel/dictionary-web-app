@@ -1,5 +1,6 @@
 import AudioButton from "@/components/button/AudioButton";
 import DarkmodeToggleButton from "@/components/button/DarkmodeToggleButton";
+import MeaningDisplay from "@/components/display/MeaningDisplay";
 import PhoneticDisplay from "@/components/display/PhoneticDisplay";
 import Divider from "@/components/divider";
 import Dropdown from "@/components/dropdown";
@@ -45,6 +46,9 @@ const Home: React.FC = () => {
 			</Section>
 			<Section classname={"mainseparator"}>
 				<MainSeparator title={"noun"} />
+			</Section>
+			<Section classname={"noundefinition"}>
+				<MeaningDisplay />
 			</Section>
 		</main>
 	);

@@ -50,14 +50,25 @@ const Home: React.FC = () => {
 				<MainSeparator title={"noun"} />
 			</Section>
 			<Section classname={"definitions"}>
-				<MeaningDisplay definitions={test.data[0].meanings[0].definitions} classname={"noun"} />
+				<MeaningDisplay
+					definitions={test.data[0].meanings[0].definitions}
+					classname={"noun"}
+					synonyms={test.data[0].meanings[0].synonyms}
+					antonyms={test.data[0].meanings[0].antonyms}
+				/>
 			</Section>
 			<Section classname={"mainseparator"}>
 				<MainSeparator title={"verb"} />
 			</Section>
 			<Section classname={"definitions"}>
-				<MeaningDisplay definitions={test.data[0].meanings[1].definitions} classname={"noun"} />
+				<MeaningDisplay
+					definitions={test.data[0].meanings[1].definitions}
+					classname={"verb"}
+					synonyms={test.data[0].meanings[1].synonyms}
+					antonyms={test.data[0].meanings[1].antonyms}
+				/>
 			</Section>
+			<Divider classname={"mainseparator"} />
 		</main>
 	);
 };

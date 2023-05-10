@@ -4,10 +4,17 @@ import React, { ReactNode } from "react";
 
 interface Props {
 	definitions: any; // array of definitions already parsed and cleaned
-	classname: "noun" | "verb"; //
+	classname: "noun" | "verb";
+	synonyms?: any;
+	antonyms?: any;
 }
 
-const MeaningDisplay: React.FC<Props> = ({ classname, definitions }) => {
+const MeaningDisplay: React.FC<Props> = ({
+	classname,
+	definitions,
+	synonyms = null,
+	antonyms = null,
+}) => {
 	const currFont: string = "mono"; //TODO replace with zustand
 
 	const createPoints = (definitions: any): ReactNode => {
@@ -30,7 +37,14 @@ const MeaningDisplay: React.FC<Props> = ({ classname, definitions }) => {
 			)
 		);
 	};
-	createPoints(definitions);
+
+	const createNyms = (nyms: string[] | null) => {
+		if (nyms) {
+			return nyms.map((curr: string | null, index: any) => <span key={index + curr}>{curr}</span>);
+		} else {
+			return null;
+		}
+	};
 
 	return (
 		<article className={clsx(classname, "")}>
@@ -38,6 +52,18 @@ const MeaningDisplay: React.FC<Props> = ({ classname, definitions }) => {
 			<ul className={clsx("meaning-display-ul-wrapper", "list-disc text-secondary-100")}>
 				{createPoints(definitions)}
 			</ul>
+			{synonyms.length > 0 && (
+				<div className={clsx("flex justify-between")}>
+					<h4>Synonyms</h4>
+					<div>{createNyms(synonyms)}</div>
+				</div>
+			)}
+			{antonyms.length > 0 && (
+				<div className={clsx("flex justify-between")}>
+					<h4>Antonyms</h4>
+					<div>{createNyms(antonyms)}</div>
+				</div>
+			)}
 		</article>
 	);
 };

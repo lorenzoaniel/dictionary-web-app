@@ -11,6 +11,7 @@ import MainSeparator from "@/components/separator/MainSeparator";
 import { clsx } from "clsx";
 import React from "react";
 import { testdata } from "@/testdata/testdata";
+import SourcesDisplay from "@/components/display/SourcesDisplay";
 
 const Home: React.FC = () => {
 	const test = {
@@ -23,10 +24,10 @@ const Home: React.FC = () => {
 		<main
 			className={clsx(
 				"App",
-				"p-[2.4rem] h-full bg-primary-100",
+				"p-[2.4rem] pb-[6.3rem] h-fit bg-primary-100",
 				"dark:bg-primary-800",
-				"md:px-[4rem] md:py-[6rem]",
-				"lg:px-[24%] lg:py-[5.8em]"
+				"md:px-[4rem] md:pt-[6rem] md:pb-[11.8rem]",
+				"lg:px-[24%] lg:pt-[5.8em] lg:pb-[12.4.8em]"
 			)}
 		>
 			<Section classname={"header"}>
@@ -68,7 +69,10 @@ const Home: React.FC = () => {
 					antonyms={test.data[0].meanings[1].antonyms}
 				/>
 			</Section>
-			<Divider classname={"mainseparator"} />
+			<Divider classname={"mainseparator"} custstyle="mt-[3.2rem]" />
+			<Section classname={"sources"}>
+				<SourcesDisplay sources={test.data[0].sourceUrls[0]} />
+			</Section>
 		</main>
 	);
 };

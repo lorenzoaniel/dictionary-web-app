@@ -1,14 +1,20 @@
 import { create } from "zustand";
 
 interface InitialState {
-	currentFont: "Mono" | "Sans" | "Sans Serif";
-	selectFont: (font: "Mono" | "Sans" | "Sans Serif") => void;
+	currentFont: string;
+	selectFont: (font: string) => void;
 }
 
+const allowedFonts = ["mono", "sans", "serif"];
+
 export const useDropdown = create<InitialState>((set, get) => ({
-	currentFont: "Mono",
-	selectFont: (font) => {
+	currentFont: "mono",
+	selectFont: (font: string) => {
 		// Update the state value of "currentFont"
-		set({ currentFont: font });
+		if (allowedFonts.includes(font)) {
+			set({ currentFont: font });
+		} else {
+			throw Error("allowed fonts are: " + allowedFonts.join(""));
+		}
 	},
 }));

@@ -3,30 +3,31 @@
 import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { clsx } from "clsx";
+import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 
-interface Props {
-	handleClick?: () => void; //TODO: connect with zustand fontState
-}
+const Dropdown: React.FC = () => {
+	const { currentFont, selectFont } = useDropdown();
 
-const Dropdown: React.FC<Props> = ({ handleClick }) => {
-	const currFont: string = "mono"; //TODO: connect with zustand fontState
+	const handleFontSelect = (font: string) => {
+		selectFont(font);
+	};
+
 	return (
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger
-				onClick={handleClick}
 				className={clsx(
 					"dropdown-trigger",
-					"focus:outline-none",
+					"focus:outline-none capitalize",
 					"w-fit h-[2.4rem] flex items-center justify-between gap-x-[1.6rem] font-bold text-primary-600",
 					"dark:text-primary-100",
 					{
-						"font-sans text-body-m-mobile-sans md:text-body-m-sans": currFont === "sans",
-						"font-serif text-body-m-mobile-serif md:text-body-m-serif": currFont === "serif",
-						"font-mono text-body-m-mobile-mono md:text-body-m-mono": currFont === "mono",
+						"font-sans text-body-m-mobile-sans md:text-body-m-sans": currentFont === "sans",
+						"font-serif text-body-m-mobile-serif md:text-body-m-serif": currentFont === "serif",
+						"font-mono text-body-m-mobile-mono md:text-body-m-mono": currentFont === "mono",
 					}
 				)}
 			>
-				{currFont}
+				{currentFont}
 				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8">
 					<path fill="none" stroke="#A445ED" strokeWidth="1.5" d="m1 1 6 6 6-6" />
 				</svg>
@@ -55,6 +56,7 @@ const Dropdown: React.FC<Props> = ({ handleClick }) => {
 								"hover:text-secondary-100 hover:outline-none",
 								"md:text-body-m-sans"
 							)}
+							onSelect={() => handleFontSelect("sans")}
 						>
 							Sans Serif
 						</DropdownMenu.Item>
@@ -65,6 +67,7 @@ const Dropdown: React.FC<Props> = ({ handleClick }) => {
 								"hover:text-secondary-100 hover:outline-none",
 								"md:text-body-m-serif"
 							)}
+							onSelect={() => handleFontSelect("serif")}
 						>
 							Serif
 						</DropdownMenu.Item>
@@ -75,6 +78,7 @@ const Dropdown: React.FC<Props> = ({ handleClick }) => {
 								"hover:text-secondary-100 hover:outline-none",
 								"md:text-body-m-mono"
 							)}
+							onSelect={() => handleFontSelect("mono")}
 						>
 							Mono
 						</DropdownMenu.Item>

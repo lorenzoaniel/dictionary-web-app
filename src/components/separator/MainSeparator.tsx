@@ -1,13 +1,16 @@
+"use client";
+
 import { clsx } from "clsx";
 import React from "react";
 import Divider from "../divider";
+import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 
 interface Props {
 	title: string;
 }
 
 const MainSeparator: React.FC<Props> = ({ title }) => {
-	const currFont: string = "mono"; //TODO replace with zustand
+	const { currentFont } = useDropdown();
 
 	return (
 		<div
@@ -22,9 +25,10 @@ const MainSeparator: React.FC<Props> = ({ title }) => {
 					"h-fit w-fit text-primary-600 font-bold",
 					"dark:text-primary-100",
 					{
-						"text-heading-m-mobile-mono md:text-heading-m-mono": currFont === "mono",
-						"text-heading-m-mobile-sans md:text-heading-m-sans": currFont === "sans",
-						"text-heading-m-mobile-serif md:text-heading-m-serif": currFont === "serif",
+						"font-mono text-heading-m-mobile-mono md:text-heading-m-mono": currentFont === "mono",
+						"font-sans text-heading-m-mobile-sans md:text-heading-m-sans": currentFont === "sans",
+						"font-serif text-heading-m-mobile-serif md:text-heading-m-serif":
+							currentFont === "serif",
 					}
 				)}
 			>

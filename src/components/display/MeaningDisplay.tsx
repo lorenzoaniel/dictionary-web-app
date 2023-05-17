@@ -47,9 +47,16 @@ const MeaningDisplay: React.FC<Props> = ({
 	};
 
 	return (
-		<article className={clsx(classname, "")}>
-			<h4>Meaning</h4>
-			<ul className={clsx("meaning-display-ul-wrapper", "list-disc text-secondary-100")}>
+		<article className={clsx("meaning-display-" + classname, "w-fit h-fit")}>
+			<h4 className={clsx("meaning-display-title", "text-primary-400", "dark:text-primary-400")}>
+				Meaning
+			</h4>
+			<ul
+				className={clsx(
+					"meaning-display-ul-wrapper",
+					"list-disc text-secondary-100 pl-[2rem] mt-[1.7rem] flex flex-col gap-y-[1.3rem]"
+				)}
+			>
 				{createPoints(definitions)}
 			</ul>
 			{synonyms.length > 0 && (

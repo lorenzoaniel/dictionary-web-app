@@ -4,6 +4,7 @@ import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { clsx } from "clsx";
 import { useDropdown } from "@/zustand/useDropdown/useDropdown";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Dropdown: React.FC = () => {
 	const { currentFont, selectFont } = useDropdown();
@@ -33,58 +34,68 @@ const Dropdown: React.FC = () => {
 				</svg>
 			</DropdownMenu.Trigger>
 
-			<DropdownMenu.Portal>
-				<DropdownMenu.Content
-					className={clsx(
-						"dropdown-content",
-						"h-fit w-fit bg-primary-100 shadow-[0_0.5rem_3rem_rgba(0,0,0,0.1)] flex p-[2.4rem] pr-[6.9rem] rounded-[1.6rem]",
-						"dark:bg-primary-700 shadow-[0_0.5rem_3rem_rgba(164, 69, 237, 1)"
-					)}
-				>
-					<DropdownMenu.Group
-						className={clsx(
-							"dropdown-content-group",
-							"flex flex-col h-fit w-fit gap-y-[1.6rem] text-primary-600",
-							"dark:text-primary-100",
-							"hover:cursor-pointer"
-						)}
+			<AnimatePresence mode="wait">
+				<DropdownMenu.Portal>
+					<motion.div
+						className={clsx("w-fit h-fit")}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 1 }}
 					>
-						<DropdownMenu.Item
+						<DropdownMenu.Content
 							className={clsx(
-								"dropdown-content-group-item-sans",
-								"font-sans text-body-m-mobile-sans font-bold",
-								"hover:text-secondary-100 hover:outline-none",
-								"md:text-body-m-sans"
+								"dropdown-content",
+								"h-fit w-fit bg-primary-100 shadow-[0_0.5rem_3rem_rgba(0,0,0,0.1)] flex p-[2.4rem] pr-[6.9rem] rounded-[1.6rem]",
+								"dark:bg-primary-700 dark:shadow-[0_0.5rem_3rem_rgba(164,69,237,1)]"
 							)}
-							onSelect={() => handleFontSelect("sans")}
 						>
-							Sans Serif
-						</DropdownMenu.Item>
-						<DropdownMenu.Item
-							className={clsx(
-								"dropdown-content-group-item-serif",
-								"font-serif text-body-m-mobile-serif font-bold",
-								"hover:text-secondary-100 hover:outline-none",
-								"md:text-body-m-serif"
-							)}
-							onSelect={() => handleFontSelect("serif")}
-						>
-							Serif
-						</DropdownMenu.Item>
-						<DropdownMenu.Item
-							className={clsx(
-								"dropdown-content-group-item-mono",
-								"font-mono text-body-m-mobile-mono font-bold",
-								"hover:text-secondary-100 hover:outline-none",
-								"md:text-body-m-mono"
-							)}
-							onSelect={() => handleFontSelect("mono")}
-						>
-							Mono
-						</DropdownMenu.Item>
-					</DropdownMenu.Group>
-				</DropdownMenu.Content>
-			</DropdownMenu.Portal>
+							<DropdownMenu.Group
+								className={clsx(
+									"dropdown-content-group",
+									"flex flex-col h-fit w-fit gap-y-[1.6rem] text-primary-600",
+									"dark:text-primary-100",
+									"hover:cursor-pointer"
+								)}
+							>
+								<DropdownMenu.Item
+									className={clsx(
+										"dropdown-content-group-item-sans",
+										"font-sans text-body-m-mobile-sans font-bold",
+										"hover:text-secondary-100 hover:outline-none",
+										"md:text-body-m-sans"
+									)}
+									onSelect={() => handleFontSelect("sans")}
+								>
+									Sans Serif
+								</DropdownMenu.Item>
+								<DropdownMenu.Item
+									className={clsx(
+										"dropdown-content-group-item-serif",
+										"font-serif text-body-m-mobile-serif font-bold",
+										"hover:text-secondary-100 hover:outline-none",
+										"md:text-body-m-serif"
+									)}
+									onSelect={() => handleFontSelect("serif")}
+								>
+									Serif
+								</DropdownMenu.Item>
+								<DropdownMenu.Item
+									className={clsx(
+										"dropdown-content-group-item-mono",
+										"font-mono text-body-m-mobile-mono font-bold",
+										"hover:text-secondary-100 hover:outline-none",
+										"md:text-body-m-mono"
+									)}
+									onSelect={() => handleFontSelect("mono")}
+								>
+									Mono
+								</DropdownMenu.Item>
+							</DropdownMenu.Group>
+						</DropdownMenu.Content>
+					</motion.div>
+				</DropdownMenu.Portal>
+			</AnimatePresence>
 		</DropdownMenu.Root>
 	);
 };

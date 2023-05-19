@@ -1,8 +1,12 @@
+"use client";
+
+import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 import { clsx } from "clsx";
-import React from "react";
+import React, { useEffect } from "react";
 
 const SearchBar: React.FC = () => {
-	const currFont: string = "mono"; //TODO replace with zustand
+	const { currentFont } = useDropdown();
+
 	return (
 		<div
 			className={clsx(
@@ -21,9 +25,10 @@ const SearchBar: React.FC = () => {
 					"h-full w-full bg-transparent text-primary-600 placeholder:text-primary-600 placeholder:opacity-25 focus:outline-none text-body-m-serif font-bold",
 					"dark:text-primary-100",
 					{
-						"text-heading-s-mobile-mono md:text-heading-s-mono": currFont === "mono",
-						"text-heading-s-mobile-sans md:text-heading-s-sans": currFont === "sans",
-						"text-heading-s-mobile-serif md:text-heading-s-serif": currFont === "serif",
+						"font-mono text-heading-s-mobile-mono md:text-heading-s-mono": currentFont === "mono",
+						"font-sans text-heading-s-mobile-sans md:text-heading-s-sans": currentFont === "sans",
+						"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
+							currentFont === "serif",
 					}
 				)}
 			/>

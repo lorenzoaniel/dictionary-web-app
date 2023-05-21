@@ -22,7 +22,10 @@ const MeaningDisplay: React.FC<Props> = ({
 
 	const createPoints = (definitions: any): ReactNode => {
 		return definitions.map(
-			(curr: { definition?: string; synonyms?: string[]; antonyms?: string[] }, index: number) => (
+			(
+				curr: { definition?: string; synonyms?: string[]; antonyms?: string[]; example?: string },
+				index: number
+			) => (
 				<li
 					key={index + (curr.definition ?? "")}
 					className={clsx("text-secondary-100", {
@@ -39,10 +42,29 @@ const MeaningDisplay: React.FC<Props> = ({
 								"font-sans text-body-m-mobile-sans md:text-body-m-sans": currentFont === "sans",
 								"font-serif text-body-m-mobile-serif md:text-body-m-serif": currentFont === "serif",
 							},
-							"dark:text-primary-100"
+							"dark:text-primary-100",
+							{ "flex flex-col": classname === "verb" }
 						)}
 					>
 						{curr.definition}
+						{classname === "verb" ? (
+							<span
+								className={clsx(
+									"text-primary-400",
+									{
+										"font-mono text-body-m-mobile-mono md:text-body-m-mono": currentFont === "mono",
+										"font-sans text-body-m-mobile-sans md:text-body-m-sans": currentFont === "sans",
+										"font-serif text-body-m-mobile-serif md:text-body-m-serif":
+											currentFont === "serif",
+									},
+									"dark:text-primary-400"
+								)}
+							>
+								{'"' + curr.example + '"'}
+							</span>
+						) : (
+							<></>
+						)}
 					</span>
 				</li>
 			)
@@ -85,12 +107,18 @@ const MeaningDisplay: React.FC<Props> = ({
 			{synonyms.length > 0 && (
 				<div className={clsx("flex justify-between mt-[2.4rem]")}>
 					<h4
-						className={clsx({
-							"font-mono text-heading-s-mobile-mono md:text-heading-s-mono": currentFont === "mono",
-							"font-sans text-heading-s-mobile-sans md:text-heading-s-sans": currentFont === "sans",
-							"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
-								currentFont === "serif",
-						})}
+						className={clsx(
+							"text-primary-400",
+							{
+								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
+									currentFont === "mono",
+								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
+									currentFont === "sans",
+								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
+									currentFont === "serif",
+							},
+							"dark:text-primary-400"
+						)}
 					>
 						Synonyms
 					</h4>

@@ -60,7 +60,7 @@ const MeaningDisplay: React.FC<Props> = ({
 									"dark:text-primary-400"
 								)}
 							>
-								{'"' + curr.example + '"'}
+								{'"' + curr.example ? curr.example : "" + '"'}
 							</span>
 						) : (
 							<></>

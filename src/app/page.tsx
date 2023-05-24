@@ -1,3 +1,5 @@
+"use client";
+
 import AudioButton from "@/components/button/AudioButton";
 import DarkmodeToggleButton from "@/components/button/DarkmodeToggleButton";
 import MeaningDisplay from "@/components/display/MeaningDisplay";
@@ -12,13 +14,10 @@ import { clsx } from "clsx";
 import React from "react";
 import { testdata } from "@/testdata/testdata";
 import SourcesDisplay from "@/components/display/SourcesDisplay";
+import { useSearch } from "@/zustand/useSearch/useSearch";
 
 const Home: React.FC = () => {
-	const test = {
-		word: "keyboard",
-		phonetic: `/ˈkiːbɔːd/`,
-		data: testdata,
-	};
+	const { data } = useSearch();
 
 	return (
 		<main
@@ -44,7 +43,7 @@ const Home: React.FC = () => {
 				<SearchBar />
 			</Section>
 			<Section classname={"audio"}>
-				<PhoneticDisplay word={test.word} phonetic={test.phonetic} />
+				<PhoneticDisplay word={data.word} phonetic={data.phonetic} />
 				<AudioButton />
 			</Section>
 			<Section classname={"mainseparator"}>
@@ -52,10 +51,10 @@ const Home: React.FC = () => {
 			</Section>
 			<Section classname={"definitions"}>
 				<MeaningDisplay
-					definitions={test.data[0].meanings[0].definitions}
+					definitions={data.meanings?.[0]?.definitions}
 					classname={"noun"}
-					synonyms={test.data[0].meanings[0].synonyms}
-					antonyms={test.data[0].meanings[0].antonyms}
+					synonyms={data.meanings?.[0]?.synonyms}
+					antonyms={data.meanings?.[0]?.antonyms}
 				/>
 			</Section>
 			<Section classname={"mainseparator"}>
@@ -63,15 +62,15 @@ const Home: React.FC = () => {
 			</Section>
 			<Section classname={"definitions"}>
 				<MeaningDisplay
-					definitions={test.data[0].meanings[1].definitions}
+					definitions={data.meanings?.[1]?.definitions}
 					classname={"verb"}
-					synonyms={test.data[0].meanings[1].synonyms}
-					antonyms={test.data[0].meanings[1].antonyms}
+					synonyms={data.meanings?.[1]?.synonyms}
+					antonyms={data.meanings?.[1]?.antonyms}
 				/>
 			</Section>
 			<Divider classname={"mainseparator"} custstyle="mt-[3.2rem]" />
 			<Section classname={"sources"}>
-				<SourcesDisplay sources={test.data[0].sourceUrls[0]} />
+				<SourcesDisplay sources={data.sourceUrls} />
 			</Section>
 		</main>
 	);

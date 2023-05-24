@@ -5,8 +5,8 @@ import { clsx } from "clsx";
 import React from "react";
 
 interface Props {
-	word: string;
-	phonetic: string;
+	word: string | undefined;
+	phonetic: string | undefined;
 }
 
 const PhoneticDisplay: React.FC<Props> = ({ word, phonetic }) => {

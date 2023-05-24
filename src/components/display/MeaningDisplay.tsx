@@ -1,12 +1,12 @@
 "use client";
 
+import { Definition } from "@/interface/ApiData";
 import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 import { clsx } from "clsx";
 import React, { ReactNode } from "react";
-// import { PartialRawData } from "@/testdata/testdata";
 
 interface Props {
-	definitions: any; // array of definitions already parsed and cleaned
+	definitions: Definition[] | undefined; // array of definitions already parsed and cleaned
 	classname: "noun" | "verb";
 	synonyms?: any;
 	antonyms?: any;

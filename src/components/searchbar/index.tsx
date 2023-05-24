@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 
 const SearchBar: React.FC = () => {
 	const { currentFont } = useDropdown();
+	// const { clickSearch } = useSearch();
 
 	return (
 		<div
@@ -32,7 +33,13 @@ const SearchBar: React.FC = () => {
 					}
 				)}
 			/>
-			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+			<svg
+				onClick={() => {}}
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 18 18"
+			>
 				<path
 					fill="none"
 					stroke="#A445ED"

@@ -15,12 +15,13 @@ interface Props {
 const MeaningDisplay: React.FC<Props> = ({
 	classname,
 	definitions,
-	synonyms = null,
-	antonyms = null,
+	synonyms = 0,
+	antonyms = 0,
 }) => {
 	const { currentFont } = useDropdown();
 
 	const createPoints = (definitions: any): ReactNode => {
+		if (!definitions) return "";
 		return definitions.map(
 			(
 				curr: { definition?: string; synonyms?: string[]; antonyms?: string[]; example?: string },

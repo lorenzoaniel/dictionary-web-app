@@ -1,12 +1,14 @@
 "use client";
 
 import { useDropdown } from "@/zustand/useDropdown/useDropdown";
+import { useSearch } from "@/zustand/useSearch/useSearch";
 import { clsx } from "clsx";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const SearchBar: React.FC = () => {
+	const [searchInput, setSearchInput] = useState("");
 	const { currentFont } = useDropdown();
-	// const { clickSearch } = useSearch();
+	const { clickSearch } = useSearch();
 
 	return (
 		<div
@@ -18,6 +20,7 @@ const SearchBar: React.FC = () => {
 			)}
 		>
 			<input
+				onChange={(e) => setSearchInput(e.target.value)}
 				type="search"
 				aria-placeholder="Search for any word..."
 				placeholder="Search for any word..."
@@ -34,7 +37,7 @@ const SearchBar: React.FC = () => {
 				)}
 			/>
 			<svg
-				onClick={() => {}}
+				onClick={() => clickSearch(searchInput)}
 				xmlns="http://www.w3.org/2000/svg"
 				width="18"
 				height="18"

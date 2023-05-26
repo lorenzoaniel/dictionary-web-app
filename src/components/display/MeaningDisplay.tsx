@@ -5,6 +5,9 @@ import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 import { clsx } from "clsx";
 import React, { ReactNode } from "react";
 
+//TODO: add 'N/A' if words are not found
+//TODO: fix antonym and synonym placement and overflow
+
 interface Props {
 	definitions: Definition[] | undefined; // array of definitions already parsed and cleaned
 	classname: "noun" | "verb";
@@ -72,9 +75,46 @@ const MeaningDisplay: React.FC<Props> = ({
 		);
 	};
 
-	const createNyms = (nyms: string[] | null) => {
+	const createNyms = (nyms: string[] | null, title: string) => {
 		if (nyms) {
-			return nyms.map((curr: string | null, index: any) => <span key={index + curr}>{curr}</span>);
+			return (
+				<div className={clsx("flex gap-x-[3.9rem] mt-[2.4rem]")}>
+					<h4
+						className={clsx(
+							"text-primary-400",
+							{
+								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
+									currentFont === "mono",
+								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
+									currentFont === "sans",
+								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
+									currentFont === "serif",
+							},
+							"dark:text-primary-400"
+						)}
+					>
+						{title}
+					</h4>
+					<div
+						className={clsx(
+							"text-secondary-100 font-bold h-fit flex flex-wrap gap-3",
+							{
+								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
+									currentFont === "mono",
+								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
+									currentFont === "sans",
+								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
+									currentFont === "serif",
+							},
+							"dark:text-secondary-100"
+						)}
+					>
+						{nyms.map((curr: string | null, index: any) => (
+							<span key={index + curr}>{curr}</span>
+						))}
+					</div>
+				</div>
+			);
 		} else {
 			return null;
 		}
@@ -105,72 +145,8 @@ const MeaningDisplay: React.FC<Props> = ({
 			>
 				{createPoints(definitions)}
 			</ul>
-			{synonyms.length > 0 && (
-				<div className={clsx("flex justify-between mt-[2.4rem]")}>
-					<h4
-						className={clsx(
-							"text-primary-400",
-							{
-								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
-									currentFont === "mono",
-								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
-									currentFont === "sans",
-								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
-									currentFont === "serif",
-							},
-							"dark:text-primary-400"
-						)}
-					>
-						Synonyms
-					</h4>
-					<div
-						className={clsx(
-							"text-secondary-100 font-bold",
-							{
-								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
-									currentFont === "mono",
-								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
-									currentFont === "sans",
-								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
-									currentFont === "serif",
-							},
-							"dark:text-secondary-100"
-						)}
-					>
-						{createNyms(synonyms)}
-					</div>
-				</div>
-			)}
-			{antonyms.length > 0 && (
-				<div className={clsx("flex justify-between mt-[2.4rem]")}>
-					<h4
-						className={clsx({
-							"font-mono text-heading-s-mobile-mono md:text-heading-s-mono": currentFont === "mono",
-							"font-sans text-heading-s-mobile-sans md:text-heading-s-sans": currentFont === "sans",
-							"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
-								currentFont === "serif",
-						})}
-					>
-						Antonyms
-					</h4>
-					<div
-						className={clsx(
-							"text-secondary-100 font-bold",
-							{
-								"font-mono text-heading-s-mobile-mono md:text-heading-s-mono":
-									currentFont === "mono",
-								"font-sans text-heading-s-mobile-sans md:text-heading-s-sans":
-									currentFont === "sans",
-								"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
-									currentFont === "serif",
-							},
-							"dark:text-secondary-100"
-						)}
-					>
-						{createNyms(antonyms)}
-					</div>
-				</div>
-			)}
+			{synonyms.length > 0 && createNyms(synonyms, "Synonyms")}
+			{antonyms.length > 0 && createNyms(antonyms, "Antonyms")}
 		</article>
 	);
 };

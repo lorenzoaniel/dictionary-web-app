@@ -16,9 +16,10 @@ const SourcesDisplay: React.FC<Props> = ({ sources }) => {
 		if (sources === undefined) temp = [];
 		return temp?.map((currSource, index) => {
 			return (
-				<span key={currSource + index} className={clsx("flex gap-x-[0.8rem]")}>
+				<span key={currSource + index} className={clsx("flex gap-x-[0.8rem]", "group")}>
 					<a
 						target="_blank"
+						href={currSource}
 						className={clsx(
 							"sources-link",
 							"text-primary-600",
@@ -27,7 +28,8 @@ const SourcesDisplay: React.FC<Props> = ({ sources }) => {
 								"font-sans text-body-s-mobile-sans md:text-body-s-sans": currentFont === "sans",
 								"font-serif text-body-s-mobile-serif md:text-body-s-serif": currentFont === "serif",
 							},
-							"dark:text-primary-100"
+							"dark:text-primary-100",
+							"group-hover:underline"
 						)}
 					>
 						{currSource}

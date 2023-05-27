@@ -4,25 +4,32 @@ import { create } from "zustand";
 
 interface InitialState {
 	data: PartialApiData;
-	searchStatus: boolean; //if false search failed to find results
+	errorStatus: boolean; //if false search failed to find results
+	emptyStatus: boolean;
 	clickSearch: (word: string) => void;
+	setEmpty: () => void;
 }
 
 export const useSearch = create<InitialState>((set) => ({
 	data: testdata,
-	searchStatus: true,
+	errorStatus: false,
+	emptyStatus: false,
 	clickSearch: async (word: string) => {
 		try {
 			const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
 			const result = await response.json();
-			if (Array.isArray(result) && result.length > 0) {
-				set({ data: result[0], searchStatus: true });
+			console.log(result);
+			if (!result.hasOwnProperty("title")) {
+				set({ data: result[0], errorStatus: false });
 			} else {
-				set({ searchStatus: false });
+				set({ errorStatus: true });
 			}
 		} catch (error) {
 			console.error("An error occurred during the search:", error);
-			set({ searchStatus: false });
+			set({ errorStatus: true });
 		}
+	},
+	setEmpty: () => {
+		set((state) => ({ emptyStatus: !state.emptyStatus }));
 	},
 }));

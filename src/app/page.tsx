@@ -15,9 +15,10 @@ import React from "react";
 import { testdata } from "@/testdata/testdata";
 import SourcesDisplay from "@/components/display/SourcesDisplay";
 import { useSearch } from "@/zustand/useSearch/useSearch";
+import Error from "@/components/errors/Error";
 
 const Home: React.FC = () => {
-	const { data } = useSearch();
+	const { data, errorStatus, emptyStatus } = useSearch();
 
 	return (
 		<main
@@ -42,36 +43,42 @@ const Home: React.FC = () => {
 			<Section classname={"searchbar"}>
 				<SearchBar />
 			</Section>
-			<Section classname={"audio"}>
-				<PhoneticDisplay word={data.word} phonetic={data.phonetic} />
-				<AudioButton />
-			</Section>
-			<Section classname={"mainseparator"}>
-				<MainSeparator title={"noun"} />
-			</Section>
-			<Section classname={"definitions"}>
-				<MeaningDisplay
-					definitions={data.meanings?.[0]?.definitions}
-					classname={"noun"}
-					synonyms={data.meanings?.[0]?.synonyms}
-					antonyms={data.meanings?.[0]?.antonyms}
-				/>
-			</Section>
-			<Section classname={"mainseparator"}>
-				<MainSeparator title={"verb"} />
-			</Section>
-			<Section classname={"definitions"}>
-				<MeaningDisplay
-					definitions={data.meanings?.[1]?.definitions}
-					classname={"verb"}
-					synonyms={data.meanings?.[1]?.synonyms}
-					antonyms={data.meanings?.[1]?.antonyms}
-				/>
-			</Section>
-			<Divider classname={"mainseparator"} custstyle="mt-[3.2rem]" />
-			<Section classname={"sources"}>
-				<SourcesDisplay sources={data.sourceUrls} />
-			</Section>
+			{errorStatus || emptyStatus ? (
+				<Error isEmpty={emptyStatus} />
+			) : (
+				<>
+					<Section classname={"audio"}>
+						<PhoneticDisplay word={data.word} phonetic={data.phonetic} />
+						<AudioButton />
+					</Section>
+					<Section classname={"mainseparator"}>
+						<MainSeparator title={"noun"} />
+					</Section>
+					<Section classname={"definitions"}>
+						<MeaningDisplay
+							definitions={data.meanings?.[0]?.definitions}
+							classname={"noun"}
+							synonyms={data.meanings?.[0]?.synonyms}
+							antonyms={data.meanings?.[0]?.antonyms}
+						/>
+					</Section>
+					<Section classname={"mainseparator"}>
+						<MainSeparator title={"verb"} />
+					</Section>
+					<Section classname={"definitions"}>
+						<MeaningDisplay
+							definitions={data.meanings?.[1]?.definitions}
+							classname={"verb"}
+							synonyms={data.meanings?.[1]?.synonyms}
+							antonyms={data.meanings?.[1]?.antonyms}
+						/>
+					</Section>
+					<Divider classname={"mainseparator"} custstyle="mt-[3.2rem]" />
+					<Section classname={"sources"}>
+						<SourcesDisplay sources={data.sourceUrls} />
+					</Section>
+				</>
+			)}
 		</main>
 	);
 };

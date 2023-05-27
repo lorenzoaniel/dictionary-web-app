@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 const SearchBar: React.FC = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const { currentFont } = useDropdown();
-	const { clickSearch } = useSearch();
+	const { clickSearch, setEmpty, emptyStatus } = useSearch();
 
 	return (
 		<div
@@ -37,7 +37,14 @@ const SearchBar: React.FC = () => {
 				)}
 			/>
 			<svg
-				onClick={() => clickSearch(searchInput)}
+				onClick={() => {
+					if (searchInput) {
+						clickSearch(searchInput);
+						if (emptyStatus) setEmpty();
+					} else {
+						setEmpty();
+					}
+				}}
 				xmlns="http://www.w3.org/2000/svg"
 				width="18"
 				height="18"

@@ -33,7 +33,8 @@ const SearchBar: React.FC = () => {
 						"font-sans text-heading-s-mobile-sans md:text-heading-s-sans": currentFont === "sans",
 						"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
 							currentFont === "serif",
-					}
+					},
+					"border-error-100"
 				)}
 			/>
 			<svg

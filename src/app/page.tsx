@@ -12,7 +12,6 @@ import Section from "@/components/section";
 import MainSeparator from "@/components/separator/MainSeparator";
 import { clsx } from "clsx";
 import React from "react";
-import { testdata } from "@/testdata/testdata";
 import SourcesDisplay from "@/components/display/SourcesDisplay";
 import { useSearch } from "@/zustand/useSearch/useSearch";
 import Error from "@/components/errors/Error";
@@ -49,7 +48,7 @@ const Home: React.FC = () => {
 				<>
 					<Section classname={"audio"}>
 						<PhoneticDisplay word={data.word} phonetic={data.phonetic} />
-						<AudioButton />
+						<AudioButton audioData={data.phonetics} />
 					</Section>
 					<Section classname={"mainseparator"}>
 						<MainSeparator title={"noun"} />

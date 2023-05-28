@@ -1,14 +1,44 @@
-import React from "react";
+import { Phonetic } from "@/interface/ApiData";
+import React, { useRef } from "react";
 
-const AudioButton: React.FC = () => {
+interface Props {
+	audioData: Phonetic[] | undefined;
+}
+
+const AudioButton: React.FC<Props> = ({ audioData }) => {
+	const audioRef = useRef<HTMLAudioElement | null>(null);
+
+	let audioSrc: string | undefined;
+
+	if (audioData) {
+		const audioDataWithAudio = audioData.filter((curr) => {
+			return curr.audio !== undefined && curr.audio !== "";
+		});
+		if (audioDataWithAudio.length > 0) {
+			audioSrc = audioDataWithAudio[0].audio;
+		}
+	}
+
+	const playAudio = () => {
+		if (audioSrc) {
+			const audio = new Audio(audioSrc);
+			audio.play();
+		}
+	};
+
 	return (
 		<button
+			onClick={() => playAudio()}
 			className="audio-button
 			group
 			bg-transparent
       h-fit w-fit
       "
 		>
+			<audio ref={audioRef}>
+				<source src={audioSrc} type="audio/mpeg" />
+				Your browser does not support the audio element.
+			</audio>
 			<svg
 				className="audio-button-icon
         h-[4.8rem] w-[4.8rem]

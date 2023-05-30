@@ -54,7 +54,7 @@ const MeaningDisplay: React.FC<Props> = ({
 						{classname === "verb" ? (
 							<span
 								className={clsx(
-									"text-primary-400",
+									"text-primary-400 mt-[1.3rem]",
 									{
 										"font-mono text-body-m-mobile-mono md:text-body-m-mono": currentFont === "mono",
 										"font-sans text-body-m-mobile-sans md:text-body-m-sans": currentFont === "sans",

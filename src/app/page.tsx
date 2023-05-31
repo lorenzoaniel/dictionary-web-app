@@ -3,7 +3,7 @@
 import AudioButton from "@/components/button/AudioButton";
 import DarkmodeToggleButton from "@/components/button/DarkmodeToggleButton";
 import MeaningDisplay from "@/components/display/MeaningDisplay";
-import PhoneticDisplay from "@/components/display/PhoneticDisplay";
+import PhoneticsDisplay from "@/components/display/PhoneticsDisplay";
 import Divider from "@/components/divider";
 import Dropdown from "@/components/dropdown";
 import Logo from "@/components/logo";
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 			) : (
 				<>
 					<Section classname={"audio"}>
-						<PhoneticDisplay word={data.word} phonetic={data.phonetic} />
+						<PhoneticsDisplay word={data.word} phonetic={data.phonetic} />
 						<AudioButton audioData={data.phonetics} />
 					</Section>
 					<Section classname={"mainseparator"}>

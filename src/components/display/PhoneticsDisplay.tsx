@@ -3,13 +3,14 @@
 import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 import { clsx } from "clsx";
 import React from "react";
+//test
 
 interface Props {
 	word: string | undefined;
 	phonetic: string | undefined;
 }
 
-const PhoneticDisplay: React.FC<Props> = ({ word, phonetic }) => {
+const PhoneticsDisplay: React.FC<Props> = ({ word, phonetic }) => {
 	const { currentFont } = useDropdown();
 
 	return (
@@ -47,4 +48,4 @@ const PhoneticDisplay: React.FC<Props> = ({ word, phonetic }) => {
 	);
 };
 
-export default PhoneticDisplay;
+export default PhoneticsDisplay;

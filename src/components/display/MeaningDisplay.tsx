@@ -5,9 +5,6 @@ import { useDropdown } from "@/zustand/useDropdown/useDropdown";
 import { clsx } from "clsx";
 import React, { ReactNode } from "react";
 
-//TODO: add 'N/A' if words are not found
-//TODO: fix antonym and synonym placement and overflow
-
 interface Props {
 	definitions: Definition[] | undefined; // array of definitions already parsed and cleaned
 	classname: "noun" | "verb";
@@ -110,7 +107,9 @@ const MeaningDisplay: React.FC<Props> = ({
 						)}
 					>
 						{nyms.map((curr: string | null, index: any) => (
-							<span key={index + curr}>{curr}</span>
+							<span className={clsx("hover:underline")} key={index + curr}>
+								{curr}
+							</span>
 						))}
 					</div>
 				</div>

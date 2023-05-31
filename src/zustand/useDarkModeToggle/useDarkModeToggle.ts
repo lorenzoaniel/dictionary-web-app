@@ -5,8 +5,6 @@ interface InitialState {
 	toggleDarkMode: () => void;
 }
 
-//TODO: FIX ISSUE REGARDING COLOR SCHEME NOT UPDATING ON TOGGLE
-
 export const useDarkModeToggle = create<InitialState>((set, get) => ({
 	isDark:
 		(typeof localStorage !== "undefined" && localStorage.getItem("darkMode") === "true") ||

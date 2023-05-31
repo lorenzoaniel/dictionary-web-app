@@ -6,6 +6,7 @@ import { clsx } from "clsx";
 import React, { useEffect, useState } from "react";
 
 const SearchBar: React.FC = () => {
+	const [onFocus, setOnFocus] = useState(false);
 	const [searchInput, setSearchInput] = useState("");
 	const { currentFont } = useDropdown();
 	const { clickSearch, setEmpty, emptyStatus } = useSearch();
@@ -16,12 +17,16 @@ const SearchBar: React.FC = () => {
 				"search-bar-wrapper",
 				"h-[4.8rem] w-full bg-primary-200 rounded-[1.6rem] flex items-center px-[2.4rem] py-[1.5rem] gap-x-[1rem]",
 				"md:h-[6.4rem]",
-				"dark:bg-primary-700"
+				"dark:bg-primary-700",
+				{ "border-secondary-100 border-[0.1rem]": onFocus },
+				{ "border-error-100 border-[0.1rem]": emptyStatus }
 			)}
 		>
 			<input
 				onChange={(e) => setSearchInput(e.target.value)}
 				type="search"
+				onFocus={() => setOnFocus(true)}
+				onBlur={() => setOnFocus(false)}
 				aria-placeholder="Search for any word..."
 				placeholder="Search for any word..."
 				className={clsx(
@@ -33,8 +38,7 @@ const SearchBar: React.FC = () => {
 						"font-sans text-heading-s-mobile-sans md:text-heading-s-sans": currentFont === "sans",
 						"font-serif text-heading-s-mobile-serif md:text-heading-s-serif":
 							currentFont === "serif",
-					},
-					"border-error-100"
+					}
 				)}
 			/>
 			<svg

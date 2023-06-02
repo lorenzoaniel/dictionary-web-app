@@ -30,7 +30,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./public/screenshots/Dictionary_Web_App_Default.png)
+![](./public/screenshots/Dictionary_Web_App_Dark.png)
 
 ### Links
 
